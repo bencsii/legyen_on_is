@@ -20,10 +20,11 @@ namespace legyen_on_is
             foreach (string line in lines)
             {
                 string[] item = line.Split(';');
-
+ 
                 string kerdesSzoveg = item[1];
                 List<string> valaszok = new List<string>
                 {
+                    
                     item[2],
                     item[3],
                     item[4],
@@ -32,9 +33,10 @@ namespace legyen_on_is
 
                 string helyes = item[6].ToUpper();
                 string kategoria = item[7];
+                string szint =  item[0];
 
 
-                Kerdes ujKerdes = new Kerdes(kerdesSzoveg, valaszok, helyes, kategoria);
+                Kerdes ujKerdes = new Kerdes(kerdesSzoveg, valaszok, helyes, kategoria,szint);
                 kerdesek.Add(ujKerdes);
 
             }
