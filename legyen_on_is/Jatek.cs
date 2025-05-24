@@ -12,7 +12,10 @@ namespace legyen_on_is
 		public void JatekIndit()
 		{
 			int jatekosSzint = 1;
-			int nyertOsszeg = 0;
+            bool felezoHasznalt = false;
+            bool telefonosHasznalt = false;
+            bool kozonsegHasznalt = false;
+
             Dictionary<int, string> nyeremenyek = new Dictionary<int, string>()
 			{
 				{1, "1 000 Ft"},
@@ -63,11 +66,11 @@ namespace legyen_on_is
 					Console.WriteLine($"{betu} {valasz}");
 					betu++;
 				}
-                Console.Write("Segitseg hasznalata : (f = 50/50, t = telefon, k = kozonseg)");
+                Console.Write("Segitseg hasznalata : (f = 50/50, t = telefon, k = kozonseg, n = semmi): ");
 				
                 string segitsegH = Console.ReadLine().ToLower();
                 
-				if(segitsegH == "f")
+				if(segitsegH == "f" && !felezoHasznalt)
 				{
                     List<string> felezettValaszok = segitseg.Felezo(kerdes);
                     Console.WriteLine("Felezo utan maradt valaszok:");
@@ -77,15 +80,19 @@ namespace legyen_on_is
                         char felezo = (char)('A' + index);
                         Console.WriteLine($"{felezo} {valasz}");
                     }
+					felezoHasznalt = true;
                 }
-                else if (segitsegH == "t")
+                else if (segitsegH == "t" && !telefonosHasznalt)
                 {
                     segitseg.TelefonosSegitseg(kerdes);
+                    telefonosHasznalt = true;
                 }
 
-				else if (segitsegH == "k")
+				else if (segitsegH == "k" && !kozonsegHasznalt)
 				{
 					segitseg.KozonsegSegit(kerdes);
+					kozonsegHasznalt= true;
+					
 				}
 
 
